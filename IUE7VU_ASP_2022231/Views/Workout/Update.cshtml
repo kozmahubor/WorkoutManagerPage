@@ -1,0 +1,65 @@
+﻿@using IUE7VU_ASP_2022231.Models.Enums;
+@model IUE7VU_ASP_2022231.Models.Workout
+
+@{
+    ViewData["Title"] = "Update";
+}
+
+<h1>Create</h1>
+
+<h4>Update</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="update" asp-controller="Workout" method="post" enctype="multipart/form-data" >
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <input asp-for="WorkoutId" class="form-control" required hidden />
+            </div>
+            <div class="form-group">
+                <label asp-for="MuscleTypes" class="control-label"></label>
+                <select asp-for="MuscleTypes" class="form-control" required asp-items="Html.GetEnumSelectList(typeof(MuscleTypes))"> ></select>
+                <span asp-validation-for="MuscleTypes" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="WorkoutTime_Weights" class="control-label"></label>
+                <input asp-for="WorkoutTime_Weights" class="form-control" required min="0.1" max="24"/>
+                <span asp-validation-for="WorkoutTime_Weights" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="WorkoutTime_Cardio" class="control-label"></label>
+                <input asp-for="WorkoutTime_Cardio" class="form-control" required min="0.1" max="24"/>
+                <span asp-validation-for="WorkoutTime_Cardio" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="WorkoutDifficulty" class="control-label"></label>
+                <select asp-for="WorkoutDifficulty" class="form-control" required asp-items="Html.GetEnumSelectList(typeof(WorkoutDifficulty))"></select>
+                <span asp-validation-for="WorkoutDifficulty" class="text-danger"></span>
+            </div>
+            <div>
+                <input asp-for="PersonId" value="@ViewBag.PersonId" hidden/>
+            </div>           
+            <div>
+                <input asp-for="Person" value="@Model.Person" hidden/>
+            </div>
+@*            <div class="form-group">
+                <label asp-for="WorkoutDay" class="control-label"></label>
+                <input asp-for="WorkoutDay" class="form-control" required />
+                <span asp-validation-for="WorkoutDay" class="text-danger"></span>
+            </div>*@
+            <div class="form-group">
+                <input type="submit" value="Update" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+<br />
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

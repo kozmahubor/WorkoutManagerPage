@@ -1,0 +1,71 @@
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+nav a {
+    padding: 15px;
+    background-color: darkcyan
+}
+
+.new-own-table {
+    border: 3px solid black;
+    font-family: 'Kristen ITC', serif;
+    font-size: 11px;
+    width: 100%;
+    text-align: center;
+}
+
+.new-own-body {
+    background-color: tan;
+}
+
+th, td {
+    border: 5px solid black;
+    padding: 10px;
+}
+
+.own-header {
+    background-color: aquamarine
+}
+
+.home-class {
+    font-family: 'Brush Script MT', cursive;
+    font-size: 40px;
+    color: hotpink;
+    background-color: black;
+    border: 10px solid red;
+    padding: 35px;
+}
+
+a {
+    text-decoration: none;
+    font-size: 12px;
+    background-color: darkred;
+    color: lightblue;
+    border: 3px solid black;
+    padding: 7px
+}
+
+    a:hover {
+        color: forestgreen;
+    }
+
+body {
+    background-image: url(https://tenor.com/hu/view/the-rock-gif-23501265.gif);
+    background-color: #cccccc;
+}
+
+label {
+    font-weight: bold;
+}
+

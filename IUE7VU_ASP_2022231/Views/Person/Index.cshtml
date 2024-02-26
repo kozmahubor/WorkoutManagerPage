@@ -1,0 +1,76 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@using Newtonsoft.Json;
+@model IEnumerable<IUE7VU_ASP_2022231.Models.Person>
+@inject UserManager<IdentityUser> UserManager
+
+@{
+    ViewData["Title"] = "List People";
+    //var current = JsonConvert.DeserializeObject<Person>(Context?.Session?.GetString("person"));
+}
+
+<h1>Users</h1>
+<br/>
+
+<table class="new-own-table">
+    <thead>
+        <tr class="own-header"> 
+            <th>
+
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PersonName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PersonAge)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PersonGender)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PersonIdentity)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr class="new-own-body">
+            <td>
+                <img height="100" src="@Url.Action("GetImage", "Person", new {id = item.PersonId})"/>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PersonName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PersonAge)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PersonGender)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PersonIdentity)
+            </td>
+            <td>
+                @if (User?.Identity?.Name == item.PersonIdentity || User?.Identity?.Name == "admin@gmail.com")
+                {
+@*                     @Html.ActionLink("Delete", "Delete", new { /*id=item.PrimaryKey */ })
+*@                  <a href="/person/delete?name=@item.PersonName">Delete profile</a>
+                    <a href="/person/update?name=@item.PersonName">Update user data</a>
+                    <a href="/workout/create?personId=@item.PersonId">Add workout</a>
+                    <a href="/workout/index?id=@item.PersonId">List workouts</a>
+                }                      
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+<p>
+    <br />
+    <br />
+    <a  href="/person/create">Add person data</a>
+    <br />
+    <br />
+    <br />
+    <a asp-action="Index" asp-controller="Home">Homepage</a>
+    <br />
+</p>

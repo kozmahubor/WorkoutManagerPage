@@ -1,0 +1,33 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@inject UserManager<IdentityUser> UserManager
+
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+<audio id="huh-sound" src="~/images/Huh_Sound Effect.mp3" loop autoplay></audio>
+
+<script>
+    // Get the audio element
+    var audio = document.getElementById("huh-sound");
+
+    // Set the volume (0.1 is 10% of the original volume)
+    audio.volume = 0.05 ; // Adjust this value as needed
+</script>
+<div class="text-center">
+    <h1 class="home-class"><pre>Welcome
+        Create your own profile and workout calendar here</pre></h1>
+    <br />
+    <br />
+    <br />
+</div>
+<div class="text-center">
+    <a  href="/person/create">Add person data</a>
+    <br />
+    <br />
+    <br />
+    <a href="/person/index">List users</a>
+    <br />
+    <br />
+    <br />
+</div>

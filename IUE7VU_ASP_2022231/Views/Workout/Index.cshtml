@@ -1,0 +1,98 @@
+﻿@model IEnumerable<IUE7VU_ASP_2022231.Models.Workout>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Workouts</h1>
+<p>
+      <br />
+      <a href="/home">Back to home page</a>
+      <br />
+      <br />
+      <br />
+      <a href="/person">List users</a> 
+      <br />
+      <br />
+      <br />
+</p>
+<table class="new-own-table">
+    <thead>
+        <tr class="own-header">
+            <th>
+
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WorkoutId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MuscleTypes)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WorkoutTime_Weights)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WorkoutTime_Cardio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WorkoutDifficulty)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WorkoutDay)
+            </th>
+           @* <th>
+                @Html.DisplayNameFor(model => model.Person)
+            </th>*@
+            @*<th>
+                @Html.DisplayNameFor(model => model.PersonId)
+            </th>*@
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model)
+{
+    //workout kapcsolás azonos kulcsal rendelkező personökhöz
+    @if (ViewBag.PersonId == item.PersonId || TempData["PersonId"]?.ToString() == item.PersonId)
+    {
+        <tr class="new-own-body">
+            <td>
+                <img height="100" width="100" src="@Url.Action("GetImage", "Workout", new {Id = item.WorkoutId})"/>
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.WorkoutId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MuscleTypes)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WorkoutTime_Weights)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WorkoutTime_Cardio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WorkoutDifficulty)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WorkoutDay)
+            </td>
+           @* <td>
+                @Html.DisplayFor(modelItem => item.Person)
+            </td>*@
+           @* <td>
+                @Html.DisplayFor(modelItem => item.PersonId)
+            </td>*@
+            <td>
+                @*<a href="/workout/update?workoutId=@item.WorkoutId">Update workout</a>*@
+                <br />
+                <a href="/workout/update?personId=@item.PersonId&workoutId=@item.WorkoutId">Update workout</a>
+                <a href="/workout/delete?personId=@item.PersonId&workoutId=@item.WorkoutId">Delete workout</a>
+                <br />
+                <br />
+            </td>
+        </tr>
+    }
+} 
+    </tbody>
+</table>
